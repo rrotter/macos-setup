@@ -9,7 +9,8 @@ Features
 - Set many other settings where Apple actually respects their own `defaults write` tool (yay!)
 - Uses ansible, deletes it afterword
 - Installs homebrew
-- Doesn't (yet) do anything w/ dotfiles. It probably should.
+- Installs dotfiles
+- Installs global brewfile
 
 Usage
 -----
