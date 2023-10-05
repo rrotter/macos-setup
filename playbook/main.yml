@@ -1,0 +1,20 @@
+---
+- name: setup macos
+  hosts: all
+  # quit any apps that we're going to change prefs on, not using notify as
+  # this may be more reliable that just restarting them afterwords
+  pre_tasks:
+    - name: quit Finder
+      ansible.builtin.command:
+        cmd: osascript -e 'tell app "Finder" to quit'
+  tasks:
+    - import_tasks: tasks/prefs.yml
+  roles:
+    - role: geerlingguy.mac.dock
+  post_tasks:
+    - name: start Finder
+      ansible.builtin.command:
+        cmd: open -a Finder
+
+  vars_files:
+    - config.yml
