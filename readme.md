@@ -13,16 +13,18 @@ Features
 
 Usage
 -----
-If you are me, run every script in the top level in order:
+Get this repo _the hard way_. Because Xcode and homebrew aren't installed yet we don't have `git` or `wget`.
 ```
 cd /tmp
-git clone https://github.com/rrotter/macos-setup.git
-cd macos-setup
+curl -OL https://github.com/rrotter/macos-setup/archive/refs/heads/main.zip
+unzip main.zip
+cd macos-setup-main
+```
+Run every script in the top level in order
+```
 ./00<tab>
 ...
 ```
-
-If you are anyone else, just poke around and crib what you find useful. You probably don't want to just run this as-is.
 
 Credits and references
 ----------------------
