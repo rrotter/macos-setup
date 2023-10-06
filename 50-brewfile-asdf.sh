@@ -2,4 +2,4 @@
 
 brew bundle --global
 
-${HOME}/asdf-update
+${HOME}/bin/asdf-update

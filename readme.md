@@ -7,7 +7,7 @@ Features
 --------
 - Set many settings that seem to only work in the GUI (boo!)
 - Set many other settings where Apple actually respects their own `defaults write` tool (yay!)
-- Uses ansible, deletes it afterword
+- Removes excess Dock items
 - Installs homebrew
 - Installs dotfiles
 - Installs global brewfile
