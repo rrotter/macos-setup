@@ -16,7 +16,10 @@ tell application "System Events"
 		-- Use DuckDuckGo
 		click button "Search" of toolbar 1 of window 1
 		tell window "Search"
-			my set_pop_up(pop up button "Search engine:" of group 1 of group 1, "DuckDuckGo")
+			tell group 1 of group 1
+				my set_pop_up(pop up button "Search engine:", "DuckDuckGo")
+				my set_checkbox(checkbox "Include Safari Suggestions", 0) -- quash App Store spam
+			end tell
 			display dialog "Safari Search Settings complete!" buttons {"Exit Setup", "Continue Setup"} cancel button "Exit Setup" default button "Continue Setup"
 			-- close settings window
 			click button 1
@@ -25,6 +28,21 @@ tell application "System Events"
 end tell
 
 return
+
+(*
+ * set_checkbox(Object check_box, int desired)
+ *
+ * toggle checkbox if value doesn't match what desired
+ *)
+on set_checkbox(check_box, desired)
+	tell application "System Events"
+		tell check_box
+			if (value is not desired) then
+				click
+			end if
+		end tell
+	end tell
+end set_checkbox
 
 (*
  * set_pop_up(Object pop_up, int desired)
