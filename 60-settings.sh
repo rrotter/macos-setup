@@ -47,3 +47,6 @@ defaults write com.apple.finder NewWindowTargetPath "file://${HOME}/"
 defaults write com.apple.finder FXDefaultSearchScope SCcf
 
 open -a Finder
+
+osascript -e 'tell app "Calendar" to quit'
+defaults write com.apple.iCal "TimeZone support enabled" -bool true
