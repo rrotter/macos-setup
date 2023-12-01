@@ -1,31 +1,34 @@
 #!/bin/sh
 
-dockutil --remove "App Store"
-sleep 1
-dockutil --remove "Contacts"
-sleep 1
-dockutil --remove "FaceTime"
-sleep 1
-dockutil --remove "Keynote"
-sleep 1
-dockutil --remove "Launchpad"
-sleep 1
-dockutil --remove "Maps"
-sleep 1
-dockutil --remove "Music"
-sleep 1
-dockutil --remove "Numbers"
-sleep 1
-dockutil --remove "Pages"
-sleep 1
-dockutil --remove "Photos"
-sleep 1
-dockutil --remove "Reminders"
-sleep 1
-dockutil --remove "System Settings"
-sleep 1
-dockutil --remove "TV"
+### Dock ###
 
+# waiting for a stable release of dockutil, until it drops you'll need to
+# manually install with `brew install --HEAD dockutil`
+# see:
+#   - `brew info dockutil`
+#   - `https://github.com/kcrawford/dockutil`
+
+# not doing this automatically until there is stable release
+# brew install dockutil
+
+dockutil --no-restart --remove com.apple.AddressBook
+dockutil --no-restart --remove com.apple.AppStore
+dockutil --no-restart --remove com.apple.FaceTime
+dockutil --no-restart --remove com.apple.Maps
+dockutil --no-restart --remove com.apple.Music
+dockutil --no-restart --remove com.apple.Photos
+dockutil --no-restart --remove com.apple.TV
+dockutil --no-restart --remove com.apple.iWork.Keynote
+dockutil --no-restart --remove com.apple.iWork.Numbers
+dockutil --no-restart --remove com.apple.iWork.Pages
+dockutil --no-restart --remove com.apple.launchpad.launcher
+dockutil --no-restart --remove com.apple.reminders
+dockutil --no-restart --remove com.apple.systempreferences
+osascript -e 'tell app "Dock" to quit' # restart once, not after each removal
+
+# brew uninstall dockutil # don't really need this once we're done
+
+### Finder ###
 osascript -e 'tell app "Finder" to quit'
 
 # show file extensions, and don't whine when I change them
@@ -48,5 +51,17 @@ defaults write com.apple.finder FXDefaultSearchScope SCcf
 
 open -a Finder
 
+### iCal ###
 osascript -e 'tell app "Calendar" to quit'
 defaults write com.apple.iCal "TimeZone support enabled" -bool true
+
+### set default apps for opening text files ###
+brew install duti
+# some useful commands:
+# duti -e txt # get UTTypeIdentifier for .txt extension
+# duti -d public.plain-text # what app handles the public.plain-text uti?
+# duti -l public.plain-text # what apps can handle the public.plain-text uti?
+editor_bundle_id="com.macromates.TextMate"
+for id in public.data public.plain-text public.text bash c h js json md pl py rb sh yaml zsh; do
+  duti -sv $editor_bundle_id $id all
+done
