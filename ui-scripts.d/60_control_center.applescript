@@ -12,7 +12,7 @@ do shell script "open x-apple.systempreferences:com.apple.ControlCenter-Settings
 
 tell application "System Events"
 	tell process app_name
-		-- wait for Displays prefpane to load
+		-- wait for prefpane to load
 		repeat until exists group 1 of window "Control Center"
 		end repeat
 		

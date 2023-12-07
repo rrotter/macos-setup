@@ -2,7 +2,7 @@
 (* Keyboard settings
  * 
  * Enable dictation
-  * Disable auto correct, smartquotes, and awful things
+ * Disable auto correct, smartquotes, and awful things
  * todo: set dictation languages
  *)
 
@@ -13,7 +13,7 @@ do shell script "open x-apple.systempreferences:com.apple.preference.keyboard"
 
 tell application "System Events"
 	tell process app_name
-		-- wait for Displays prefpane to load
+		-- wait for prefpane to load
 		repeat until exists group 1 of window "Keyboard"
 		end repeat
 		
