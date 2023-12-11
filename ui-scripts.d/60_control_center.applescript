@@ -28,7 +28,10 @@ tell application "System Events"
 			end repeat
 			tell sheet 1
 				tell group 2 of scroll area 1 of group 1
-					my set_checkbox(checkbox "Use a 24-hour clock", 1)
+					if exists checkbox "Use a 24-hour clock"
+						-- this setting may not exist if you've set a region that defaults to 24h
+						my set_checkbox(checkbox "Use a 24-hour clock", 1)
+					end if
 					my set_checkbox(checkbox "Display the time with seconds", 1)
 				end tell
 				click button 1 of group 1

@@ -1,8 +1,7 @@
 #!/usr/bin/osascript
 (* Disable True Tone and automatic display brightness
  * 
- * This may need some adjustment for multi-display setups and displays that
- * lack one or both of these "features".
+ * This may need some adjustment for multi-display setups
  *)
 
 global app_name
@@ -18,18 +17,22 @@ tell application "System Events"
 		
 		tell window "Displays"
 			tell group 2 of scroll area 2 of group 1 of group 2 of splitter group 1 of group 1
-				set my_checkbox to get checkbox "True Tone"
-				tell my_checkbox
-					if value as boolean then
-						click
-					end if
-				end tell
-				set my_checkbox to get checkbox "Automatically adjust brightness"
-				tell my_checkbox
-					if value as boolean then
-						click
-					end if
-				end tell
+				if exists checkbox "True Tone"
+					set my_checkbox to get checkbox "True Tone"
+					tell my_checkbox
+						if value as boolean then
+							click
+						end if
+					end tell
+				end if
+				if exists  checkbox "Automatically adjust brightness"
+					set my_checkbox to get checkbox "Automatically adjust brightness"
+					tell my_checkbox
+						if value as boolean then
+							click
+						end if
+					end tell
+				end if
 			end tell
 			display dialog "Adjust the screen resolution as desired." buttons {"Exit Setup", "Continue Setup"} cancel button "Exit Setup" default button "Continue Setup"
 			-- close settings window
