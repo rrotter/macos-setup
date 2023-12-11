@@ -23,7 +23,6 @@ dockutil --no-restart --remove com.apple.iWork.Numbers
 dockutil --no-restart --remove com.apple.iWork.Pages
 dockutil --no-restart --remove com.apple.launchpad.launcher
 dockutil --no-restart --remove com.apple.reminders
-dockutil --no-restart --remove com.apple.systempreferences
 osascript -e 'tell app "Dock" to quit' # restart once, not after each removal
 
 # brew uninstall dockutil # don't really need this once we're done
